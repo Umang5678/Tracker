@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+:root {
+  --background: #0a0e1a;
+  --foreground: #e2e8f0;
+  --card-bg: rgba(15, 23, 42, 0.7);
+  --card-border: rgba(99, 102, 241, 0.15);
+  --card-hover: rgba(99, 102, 241, 0.25);
+  --input-bg: rgba(15, 23, 42, 0.5);
+  --input-border: rgba(99, 102, 241, 0.2);
+  --input-focus: rgba(99, 102, 241, 0.5);
+  --sidebar-bg: rgba(8, 12, 28, 0.9);
+  --accent-primary: #6366f1;
+  --accent-secondary: #06b6d4;
+  --accent-gradient: linear-gradient(135deg, #6366f1, #06b6d4);
+  --danger: #ef4444;
+  --success: #10b981;
+  --warning: #f59e0b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(99, 102, 241, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(99, 102, 241, 0.5);
+}
+
+/* Glass Card Effect */
+.glass-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--card-hover);
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.1);
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated Background Orbs */
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-orb-1 {
+  width: 600px;
+  height: 600px;
+  background: #6366f1;
+  top: -200px;
+  right: -200px;
+  animation: float 20s ease-in-out infinite;
+}
+
+.bg-orb-2 {
+  width: 400px;
+  height: 400px;
+  background: #06b6d4;
+  bottom: -100px;
+  left: -100px;
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+.bg-orb-3 {
+  width: 300px;
+  height: 300px;
+  background: #8b5cf6;
+  top: 40%;
+  left: 30%;
+  animation: float 30s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -30px) scale(1.05); }
+  50% { transform: translate(-20px, 20px) scale(0.95); }
+  75% { transform: translate(15px, 10px) scale(1.02); }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+/* Staggered animations */
+.stagger-1 { animation-delay: 0.05s; }
+.stagger-2 { animation-delay: 0.1s; }
+.stagger-3 { animation-delay: 0.15s; }
+.stagger-4 { animation-delay: 0.2s; }
+.stagger-5 { animation-delay: 0.25s; }
+
+/* Pulse glow effect */
+.glow-pulse {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(99, 102, 241, 0.4); }
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Input styling */
+.input-field {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  color: var(--foreground);
+  font-size: 0.95rem;
+  width: 100%;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: var(--input-focus);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.input-field::placeholder {
+  color: rgba(148, 163, 184, 0.5);
+}
+
+/* Button base */
+.btn-primary {
+  background: var(--accent-gradient);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-secondary {
+  background: rgba(99, 102, 241, 0.1);
+  color: #a5b4fc;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-secondary:hover {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.btn-danger {
+  background: rgba(239, 68, 68, 0.1);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-danger:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+/* Toast overrides */
+.toast-custom {
+  background: var(--card-bg) !important;
+  border: 1px solid var(--card-border) !important;
+  color: var(--foreground) !important;
+  backdrop-filter: blur(20px) !important;
+}
