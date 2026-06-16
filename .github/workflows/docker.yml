@@ -1,0 +1,38 @@
+name: Docker CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build Frontend
+        run: |
+          docker build -t umang5678/expense-frontend:latest ./frontend
+
+      - name: Push Frontend
+        run: |
+          docker push umang5678/expense-frontend:latest
+
+      - name: Build Backend
+        run: |
+          docker build -t umang5678/expense-backend:latest ./backend
+
+      - name: Push Backend
+        run: |
+          docker push umang5678/expense-backend:latest
